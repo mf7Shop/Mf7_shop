@@ -132,7 +132,6 @@ export const AppContextProvider = (props) => {
 
     return (
         <AppContext.Provider value={value}>
-            <Toaster />
             {props.children}
         </AppContext.Provider>
     )

@@ -35,7 +35,7 @@ const AddProduct = () => {
 
       const token = await getToken()
 
-      const { data } = await axios.post('/api/product/add',formData,{headers: {Authorization: `bearer ${token}` }})
+      const { data } = await axios.post('/api/products/add',formData,{headers: {Authorization: `bearer ${token}` }})
 
       if (data.success) {
         toast.success(data.message)
