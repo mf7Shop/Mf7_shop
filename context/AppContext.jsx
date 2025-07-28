@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 import { useAuth, useUser } from "@clerk/nextjs";
 import { UserButton } from "@clerk/nextjs";
-import { Token } from "@clerk/nextjs/server";
 import axios from "axios";
 import toast from "react-hot-toast";
 
