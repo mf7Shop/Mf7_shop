@@ -37,9 +37,9 @@ export const AppContextProvider = (props) => {
                 setIsSeller(true)
             }
 
-            const Token = await getToken()
+            const token = await getToken()
 
-            const {data} = await axios.get('/api/user/data', { headers: { Authorization: `Bearer ${Token}` } });
+            const {data} = await axios.get('/api/user/data', { headers: { Authorization: `Bearer ${token}` } });
 
             if (data.success) {
                 setUserData(data.user)
