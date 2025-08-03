@@ -5,6 +5,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 
+
 const OrderSummary = () => {
 
   const { currency, router, getCartCount, getCartAmount, getToken, user, cartItems, setCartItems } = useAppContext()
@@ -16,20 +17,20 @@ const OrderSummary = () => {
   const fetchUserAddresses = async () => {
     try {
       const token = await getToken();
-      const {data} = await axios.get('/api/user/get-address',{headers: {Authorization: `Bearer ${token}`}})
-      if(data.success){
+      const { data } = await axios.get('/api/user/get-address', { headers: { Authorization: `Bearer ${token}` } })
+      if (data.success) {
         setUserAddresses(data.addresses)
-        if(data.addresses.length > 0){
+        if (data.addresses.length > 0) {
           setSelectedAddress(data.addresses[0])
         }
-      }else{
+      } else {
         toast.error(data.message)
       }
-      
+
     } catch (error) {
       toast.error(error.message)
     }
-    
+
   }
 
 
@@ -40,10 +41,45 @@ const OrderSummary = () => {
 
   const createOrder = async () => {
 
+    try {
+      if (!selectedAddress) {
+        return toast.error('Please select an address')
+      }
+
+      let setCartItemsArray = Object.keys(cartItems).map((key) => ({ product: key, quantity: cartItems[key] }))
+      setCartItemsArray = setCartItemsArray.filter(item => item.quantity > 0)
+
+      if (setCartItemsArray.length === 0) {
+
+        return toast.error('Cart is empty')
+
+      }
+
+      const token = await getToken()
+
+      const{data} = await axios.post('/api/order/create',{
+        address: selectedAddress._id,
+        items: setCartItemsArray
+      },{
+         headers: { Authorization: `Bearer ${token}` }
+      })
+
+      if (data.success) {
+        toast.success(data.message)
+        setCartItems({})
+        router.push('/order-placed')
+      }else {
+        toast.error(data.message)
+      }
+
+    } catch (error) {
+      toast.error(error.message)
+    }
+
   }
 
   useEffect(() => {
-    if(user){
+    if (user) {
       fetchUserAddresses();
     }
   }, [user])
