@@ -7,7 +7,6 @@ import Order from "@/models/Orders";
 export const inngest = new Inngest({ id: "quickcart-next" });
 
 // Inngest Function to save user data to database
-
 export const syncUserCreation = inngest.createFunction(
     {
         id: 'sync-user-from-clerk'
@@ -26,7 +25,7 @@ export const syncUserCreation = inngest.createFunction(
     }
 )
 
-//Inngest fonction to update user data in database0
+//Inngest function to update user data in database
 export const syncUserUpdation = inngest.createFunction(
     {
         id: 'update-user-from-clerk'
@@ -45,7 +44,7 @@ export const syncUserUpdation = inngest.createFunction(
     }
 )
 
-// Inngest fonction to delete user from database
+// Inngest function to delete user from database
 export const syncUserDeletion = inngest.createFunction(
     {
         id: 'delete-user-with-clerk'
@@ -53,24 +52,22 @@ export const syncUserDeletion = inngest.createFunction(
     { event: 'clerk/user.deleted' },
     async ({ event }) => {
         const { id } = event.data
-
         await connectDB()
         await User.findByIdAndDelete(id)
     }
 )
 
 // Inngest function to create user's order in database
-export const syncOrderCreation = inngest.createFunction(
+export const createUserOrder = inngest.createFunction(
     {
         id: 'create-user-order',
         batchEvents: {
-            maxConcurrency: 5,
+            maxConcurrency: 25,
             timeout: '5s'
         }
     },
     { event: 'order/created' },
     async ({ events }) => {
-
         const orders = events.map((event) => {
             return {
                 userId: event.data.userId,
@@ -82,7 +79,6 @@ export const syncOrderCreation = inngest.createFunction(
         })
         await connectDB()
         await Order.insertMany(orders)
-
         return {success: true, processed: orders.length};
     }
 )
