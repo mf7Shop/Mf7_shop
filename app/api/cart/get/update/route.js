@@ -5,7 +5,7 @@ import { getAuth } from '@clerk/nextjs/server'
 
 export async function POST(request) {
     try {
-        const { userId } = await getAuth(request); // Always await!
+        const { userId } = getAuth(request); // Always await!
         const { cartData } = await request.json();
         await connectDB();
         const user = await User.findById(userId);

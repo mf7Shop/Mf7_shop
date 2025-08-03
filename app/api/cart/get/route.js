@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(request) {
     try {
-        const { userId } = await getAuth(request);
+        const { userId } = getAuth(request);
         await connectDB();
         const user = await User.findById(userId);
         const { cartItems } = user;
