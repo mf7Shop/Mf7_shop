@@ -62,7 +62,7 @@ export const createUserOrder = inngest.createFunction(
     {
         id: 'create-user-order',
         batchEvents: {
-            maxConcurrency: 2,
+            maxConcurrency: 25,
             timeout: '5s'
         }
     },
