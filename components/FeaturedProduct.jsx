@@ -5,21 +5,21 @@ import Image from "next/image";
 const products = [
   {
     id: 1,
-    image: assets.girl_with_headphone_image,
-    title: "Unparalleled Sound",
-    description: "Experience crystal-clear audio with premium headphones.",
+    image: assets.mouse_red_chaos,
+    title: "TRI-MODE GAMING MOUSE",
+    description: "Attack shark x8 series.",
   },
   {
     id: 2,
-    image: assets.girl_with_earphone_image,
-    title: "Stay Connected",
-    description: "Compact and stylish earphones for every occasion.",
+    image: assets.gramsmouse,
+    title: "BOOST YOUR AIM",
+    description: "Attack shark r3pro magnesium alloy gaming mouse 8k.",
   },
   {
     id: 3,
-    image: assets.boy_with_laptop_image,
-    title: "Power in Every Pixel",
-    description: "Shop the latest laptops for work, gaming, and more.",
+    image: assets.keyboard_withandgray,
+    title: "LEVEL UP YOUR MOVEMENT",
+    description: "ATTACK SHARK X85 Wireless Mechanical Keyboard.",
   },
 ];
 

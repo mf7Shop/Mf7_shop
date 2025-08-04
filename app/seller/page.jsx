@@ -42,7 +42,7 @@ const AddProduct = () => {
         setFiles([]);
         setName('');
         setDescription('');
-        setCategory('Earphone');
+        setCategory('Mouse');
         setPrice('');
         setOfferPrice('');
       } else {
@@ -130,12 +130,10 @@ const AddProduct = () => {
               onChange={(e) => setCategory(e.target.value)}
               defaultValue={category}
             >
-              <option value="Earphone">Earphone</option>
+              <option value="Mouse">Mouse</option>
+              <option value="Keyboard">Keyboard</option>
               <option value="Headphone">Headphone</option>
-              <option value="Watch">Watch</option>
-              <option value="Smartphone">Smartphone</option>
-              <option value="Laptop">Laptop</option>
-              <option value="Camera">Camera</option>
+              <option value="MousePad">Mouse Pad</option>
               <option value="Accessories">Accessories</option>
             </select>
           </div>
