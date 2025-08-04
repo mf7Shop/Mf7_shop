@@ -42,7 +42,7 @@ const Footer = () => {
               <p>+212 679-748307</p>
               <p>+212 620-443648</p>
               <p>ayoubyaagoubi.77@gmail.com</p>
-              <p>built by Adam Abarkach</p>
+              <p>by Adam Abarkach</p>
             </div>
           </div>
         </div>
